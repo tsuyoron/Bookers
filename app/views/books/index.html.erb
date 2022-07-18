@@ -24,24 +24,44 @@
                 <%= link_to("Edit","books/#{book.id}/edit") %>
               </td>
               <td>
-                <%= link_to("Destroy","books/#{book.id}/destroy") %>
+                <%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
               </td>
           </tr>
         <% end %>
       </tbody>
     </table>
     <h2>New book</h2>
+    <div id="error_explanation">
+    <% if @book.errors.any? %>
+        <%= @book.errors.count %>
+        errors prohibited this book from being saved:
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    </div>
     <%= form_with model: @book do |f| %>
-      <div class="field">
+    <div class="field">
+      <div class="field_with_errors">
         <label for="book_title">Title</label>
+      </div>
+      <div class="field_with_errors">
         <%= f.text_field :title %>
       </div>
-      <div class="field">
+    </div>
+    <div class="field">
+      <div class="field_with_errors">
         <label for="book_body">Body</label>
+      </div>
+      <div class="field_with_errors">
         <%= f.text_area :body %>
       </div>
+    </div>
       <div class="actions">
         <%= f.submit 'Create Book'%>
       </div>
+    </div>
     <% end %>
   </body>
