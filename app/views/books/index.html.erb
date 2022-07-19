@@ -18,10 +18,10 @@
                 <%= book.body %>
               </td>
               <td>
-                <%= link_to("Show","books/#{book.id}") %>
+                <%= link_to "Show",book_path(book.id) %>
               </td>
               <td>
-                <%= link_to("Edit","books/#{book.id}/edit") %>
+                <%= link_to("Edit","/books/#{book.id}/edit") %>
               </td>
               <td>
                 <%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
@@ -51,7 +51,7 @@
         <%= f.text_field :title %>
       </div>
     </div>
-    <div class="field">    
+    <div class="field">
       <div class="field_with_errors">
         <label for="book_body">Body</label>
       </div>
