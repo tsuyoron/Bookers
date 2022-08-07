@@ -5,13 +5,15 @@ class BooksController < ApplicationController
   end
 
   def create
-    #データを受け取り新規登録するためのインスタンス作成
+    @books = Book.all
     @book = Book.new(book_params)
-    #データをデータベースに保存するためのsaveメソッド実行
     if @book.save
-      redirect_to "/books/#{@book.id}", notice: "Book was successfully created."
+      # リダイレクトと同時に'Book was successfully created.'を表示
+      # flash単体の場合：flash[:notice] = 'Book was successfully created.'
+
+      # redirect_toに合わせて記載の場合
+      redirect_to book_path(@book.id), notice: 'Book was successfully created.'
     else
-      @books = Book.all
       render :index
     end
   end
@@ -25,25 +27,23 @@ class BooksController < ApplicationController
   end
 
   def update
-    #データを受け取り新規登録するためのインスタンス作成
     @book = Book.find(params[:id])
-    #データをデータベースに保存するためのsaveメソッド実行
     if @book.update(book_params)
-    #詳細画面へリダイレクト
-      redirect_to "/books/#{@book.id}", notice: "Book was successfully updated."
+      # リダイレクトと同時に'Book was successfully created.'を表示
+      redirect_to book_path(@book.id), notice: 'Book was successfully created.'
     else
       render :edit
     end
   end
 
   def destroy
-    book = Book.find(params[:id])  # データ（レコード）を1件取得
-    book.destroy  # データ（レコード）を削除
-    redirect_to '/books'  # 投稿一覧画面へリダイレクト
+    book = Book.find(params[:id])
+    book.destroy
+    redirect_to books_path
   end
 
-  private
-  #ストロングパラメータ
+private
+
   def book_params
     params.require(:book).permit(:title, :body)
   end

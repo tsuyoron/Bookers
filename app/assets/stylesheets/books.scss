@@ -11,56 +11,33 @@ td {
     padding-right: 5px;
 }
 
-a {
-    color: #000;
+label {
+    display:block;
+}
+
+.field {
+    margin-bottom: 10px;
 }
 
 div.field, div.actions {
     margin-bottom: 10px;
 }
 
-input[type="submit"] {
-    padding: 1px 6px 1px 6px;
-}
-
-label {
-    display: block;
-}
-
 #notice {
     color: green;
 }
 
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
 
 #error_explanation {
     width: 450px;
+    border: 2px solid red;
     padding: 7px;
     padding-bottom: 0;
-}
-
-#error_explanation h2 {
-    text-align: left;
-    font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: -7px;
-    margin-bottom: 0;
-    color: #fff;
-}
-
-#error_explanation ul li {
-    font-size: 12px;
-    list-style: square;
-}
-
-.field_with_errors {
-    padding: 2px;
-    display: table;
-}
-
-p, ol, ul, td {
-    font-family: verdana, arial, helvetica, sans-serif;
-    font-size: 13px;
-    line-height: 18px;
-    margin: 33px;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
 }
